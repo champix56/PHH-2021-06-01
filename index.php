@@ -55,7 +55,7 @@
     </nav>
     <div id="form-produit">
         <!-- snippet 'bs3-form' -->
-        <form action="traitement-formulaire.php" method="POST" role="form">
+        <form action="traitement-formulaire.php" method="GET" role="form">
             <legend>Edition produit</legend>
         
             <div class="form-group">
