@@ -1,0 +1,26 @@
+/* section pour un produit unique (produit.php) */
+.produit>div{
+    display: inline-block;
+}
+.produit .left img{
+    width:300px;
+    max-height: 400px;
+}
+/* section pour un produit de liste produit (listeproduit.php) */
+.liste-produit{
+    width:100%;
+}
+.liste-produit tr{
+    height:150px;
+}
+.liste-produit td.img{
+    text-align: center;
+}
+.liste-produit td img{
+    width:200px;
+    max-height: 100%;
+}
+.liste-produit button{
+    width:100%;
+  
+}
