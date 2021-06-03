@@ -1,8 +1,11 @@
 <?php 
 include_once('sqlfunctions.php');
-$listeprods=getSqlProduits();
+$listeprods=getSqlProduits(isset($_GET["search"])?$_GET["search"]:false);
 ?>
-<h1>liste produit</h1>
+<h1>liste produit :<?=count($listeprods).' résultat(s)';?></h1>
+<?php if(isset($_GET["search"]) && strlen($_GET["search"])>0){
+    echo 'pour la recherche : '.$_GET['search'];
+};?>
 <table class="liste-produit">
     <?php
     for ($i=0; $i < count($listeprods); $i++) { 

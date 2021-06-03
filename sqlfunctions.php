@@ -47,6 +47,11 @@ function getSqlProduits($search=false)
 {
     // echo 
     $query='SELECT `idpr`, PR.`titre` AS titre, `prix`, PR.`description` AS decription, `ref`, `photo`, 	PR.`idcat` AS idcat,CA.`titre` AS cat_titre,CA.`description` AS cat_desc FROM `produits` PR, `categories` CA WHERE CA.`idcat`=PR.`idcat`';
+    if($search)
+    {
+        $query.="AND PR.titre LIKE '%".$search."%'";
+        
+    }
     //retourne tous les reultats de la requette ou false si la requette à echoué ( le parent selectTable gere le retour faux en caxs d'echec de la requette)
     return selectTable($query);
 }

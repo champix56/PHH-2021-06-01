@@ -18,9 +18,11 @@
                 <li><a href="?page=produit&idp=1">produit 1</a></li>
                 <li><a href="?page=listeproduit">liste produit</a></li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search"  method="GET">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="hidden" name="page" value="listeproduit">
+                    <input type="text" value="<?= isset($_GET["search"])? $_GET["search"]: "";?>" class="form-control" placeholder="Search" name="search">
+                    <div id="completion-container" style="border:1px solid black;background-color:skyblue; position:fixed;left:44.3%;height:auto;min-height:50px;width:205px;"></div>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
