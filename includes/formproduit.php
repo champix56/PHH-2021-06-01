@@ -43,8 +43,8 @@
                 ?>
                 <select name="cat-produit" id="cat-produit" class="form-control" required="required" >
                     <?php 
-                    for($i=0;$i<count($monResultat);$i++)
-                    {                    
+                         for($i=0;$i<count($monResultat);$i++)
+                        {                    
                         echo '<option value="'.$monResultat[$i]["idcat"].'" ';
                         if($prod && $monResultat[$i]["idcat"]==$prod["idcat"])echo ' selected="selected" ';
                         

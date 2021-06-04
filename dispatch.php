@@ -11,12 +11,21 @@ if ( isset( $_GET['page'] ) ) {
             if( 
                 isset($_POST["titre-produit"]) 
                 && isset($_POST["cat-produit"])
+                && !isset($_GET["idp"])
             ){
                $idp= insertSqlProduit($_POST["titre-produit"],$_POST["prix-produit"],
                 $_POST["description-produit"],$_POST["ref-produit"],$_POST["cat-produit"]);
                 
                 $_GET["idp"]=$idp;
                 print_r($_GET);
+            }
+            elseif (   
+                isset($_POST["titre-produit"]) 
+                && isset($_POST["cat-produit"])
+                && !empty($_GET["idp"])
+            ){
+                updateSqlProduit($_GET["idp"], $_POST["titre-produit"],$_POST["prix-produit"],
+                $_POST["description-produit"], $_POST["ref-produit"],$_POST["cat-produit"]);  
             }
         case 'edit':
             include( 'includes/formproduit.php' );

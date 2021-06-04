@@ -70,4 +70,10 @@ function insertSqlProduit($titre,$prix,$desc,$ref,$idcat,$photo=null)
     else {return false;}
     
 }
+function updateSqlProduit($idp,$titre,$prix,$desc,$ref,$idcat,$photo=null)
+{
+     $req="UPDATE `produits` SET `titre` = '".$titre."', `prix` = ".$prix.", `description` = '".$desc."', `ref` = '".$ref."', `idcat` = ".$idcat." WHERE `produits`.`idpr` = ".$idp." LIMIT 1;";
+    return selectTable($req);
+        
+}
 ?>
