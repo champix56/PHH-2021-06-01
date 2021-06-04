@@ -1,11 +1,25 @@
 <?php
 if ( isset( $_GET['page'] ) ) {
     switch ( $_GET['page'] ) {
+       
         case 'new':
         include( 'includes/formproduit.php' );
-        break;
+        break; 
+        case 'saveproduit':
+            //tache1
+            // echo 'isEmpty : '.(empty($_POST["cat-produit"])==true).' isset : '.(isset($_POST["cat-produit"])==true);
+            if( 
+                isset($_POST["titre-produit"]) 
+                && isset($_POST["cat-produit"])
+            ){
+               $idp= insertSqlProduit($_POST["titre-produit"],$_POST["prix-produit"],
+                $_POST["description-produit"],$_POST["ref-produit"],$_POST["cat-produit"]);
+                
+                $_GET["idp"]=$idp;
+                print_r($_GET);
+            }
         case 'edit':
-        include( 'includes/formproduit.php' );
+            include( 'includes/formproduit.php' );
         break;
         case 'produit':
         include( 'includes/produit.php' );

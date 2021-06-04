@@ -1,4 +1,5 @@
 <?php 
+$maDb=null;
 
 /**
  * @param mixed $query requete SQL
@@ -8,10 +9,13 @@
 function selectTable($query)
 {
     //etape 1 connexion au server & a la db
-    $maDb   =   mysqli_connect("localhost", "root" ,"","magasin");
-    $res    =   mysqli_query($maDb,$query);
+     $GLOBALS["maDb"]   =   mysqli_connect("localhost", "root" ,"","magasin");
+    $res    =   mysqli_query($GLOBALS["maDb"],$query); 
+    //print_r($res);
     if($res == false)return false;
-
+    //traitement des non query pour retourner l'etat d'affectation 
+   
+    else if(gettype($res)=="boolean" && mysqli_affected_rows($GLOBALS["maDb"])>0)return mysqli_affected_rows($GLOBALS["maDb"]);
     
     $returnArray = array();
     while ( $row    =   mysqli_fetch_assoc($res)) {
@@ -54,5 +58,16 @@ function getSqlProduits($search=false)
     }
     //retourne tous les reultats de la requette ou false si la requette à echoué ( le parent selectTable gere le retour faux en caxs d'echec de la requette)
     return selectTable($query);
+}
+function insertSqlProduit($titre,$prix,$desc,$ref,$idcat,$photo=null)
+{
+     $req="INSERT INTO `produits`(`titre`, `prix`, `description`, `ref`, `idcat`) VALUES ('".$titre."',".$prix.",'".$desc."','".$ref."',".$idcat.")";
+     $isAffected=selectTable($req);
+    if($isAffected)
+    {
+         return mysqli_insert_id ( $GLOBALS["maDb"] );
+    }
+    else {return false;}
+    
 }
 ?>
