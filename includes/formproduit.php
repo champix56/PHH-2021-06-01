@@ -41,11 +41,18 @@
                     $monResultat=selectTable("SELECT idcat, titre FROM categories ;");
                 print_r($monResultat);
                 ?>
-                <select name="cat-produit" id="cat-produit" class="form-control" required="required">
+                <select name="cat-produit" id="cat-produit" class="form-control" required="required" >
                     <?php 
                     for($i=0;$i<count($monResultat);$i++)
                     {                    
-                        echo '<option value="'.$monResultat[$i]["idcat"].'">'.$monResultat[$i]["titre"].'</option>';
+                        echo '<option value="'.$monResultat[$i]["idcat"].'" ';
+                        if($prod && $monResultat[$i]["idcat"]==$prod["idcat"])echo ' selected="selected" ';
+                        
+                        echo ' >'.$monResultat[$i]["titre"].'</option>';
+
+//  echo '<option value="'.$monResultat[$i]["idcat"].'" '.($prod && $monResultat[$i]["idcat"]==$prod["idcat"]?' selected="selected" ':'').' >'.$monResultat[$i]["titre"].'</option>'; 
+
+
                     } ?>
                 </select>
                 
